@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Intelligence</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css?v=20260409h">
+</head>
+
+<body>
+
+    <!-- ✅ VIDEO BACKGROUND -->
+    <video id="aura-vid" autoplay muted loop playsinline>
+        <source src="/static/background.mp4" type="video/mp4">
+    </video>
+
+    <!-- ✅ OVERLAY -->
+    <div id="video-overlay"></div>
+
+    <!-- ✅ INTRO OVERLAY -->
+    <div id="intro-sequence">
+        <h1>FEEL THE AURA</h1>
+    </div>
+
+    <!-- AUTH MODAL -->
+    <div id="auth-modal">
+        <div class="auth-box glass-panel">
+            <h2 id="auth-title">Login to Aura</h2>
+            <input type="text" id="auth-username" placeholder="Username">
+            <input type="email" id="auth-email" placeholder="Email" style="display:none;">
+            <input type="password" id="auth-password" placeholder="Password">
+            <button id="auth-submit-btn" class="glow-btn">Access</button>
+            <p id="auth-error"></p>
+            <p id="auth-toggle-text">
+                Don't have an account? 
+                <span id="auth-toggle-link">Sign up</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- MAIN UI -->
+    <div id="main-dashboard">
+
+        <!-- INTENTIONALLY BLANK CENTER -->
+
+        <!-- SIDEBAR PROFILE -->
+        <div id="user-sidebar" class="glass-panel">
+            <div style="display: flex; gap: 20px; align-items: center; justify-content: center; width: 100%;">
+                <h3>Profile: </h3>
+                <p id="user-name-display" style="font-weight: 600; text-shadow: 0 0 10px rgba(0,240,255,0.6);">Akash Goud</p>
+            </div>
+            <p id="user-role-display" style="margin-top: 10px; opacity: 0.8;">user</p>
+
+            <select id="language-select" style="background: rgba(255,255,255,0.08); color: white; border: none; padding: 8px 12px; border-radius: 8px; outline: none; margin-top: 15px; width: 100%;">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="te">Telugu</option>
+            </select>
+        </div>
+
+        <!-- CHAT PANEL -->
+        <div id="chat-panel" class="glass-panel">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span id="connection-dot" style="width: 10px; height: 10px; border-radius: 999px; background: rgba(255,255,255,0.35); display: inline-block;"></span>
+                    <span id="connection-status">Connecting...</span>
+                </div>
+                <span id="aura-state-text">SYSTEM ONLINE</span>
+            </div>
+            <div id="chat-log">
+                <div class="message aura-msg">
+                    Systems online. Awaiting directive.
+                </div>
+            </div>
+
+            <div class="input-row">
+                <input type="text" id="text-input" placeholder="Type command...">
+                <button id="send-btn">Send</button>
+                <button id="mic-btn">🎤</button>
+            </div>
+        </div>
+
+        <!-- HISTORY PANEL -->
+        <div id="history-panel" class="glass-panel">
+            <h3>Recent Commands</h3>
+            <ul id="history-list" class="glass-list">
+                <!-- History populated via JS -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 🔥 FORCE VIDEO PLAY & HANDLE INTRO FADEOUT
+        window.onload = () => {
+            const vid = document.getElementById("aura-vid");
+            if (vid) {
+                vid.play().catch(() => {
+                    console.log("Autoplay blocked");
+                });
+            }
+
+            // Fallback cleanly remove intro overlay so it never blocks UI
+            setTimeout(() => {
+                const intro = document.getElementById("intro-sequence");
+                if (intro) intro.style.display = "none";
+            }, 5000);
+        };
+    </script>
+
+    <script src="/static/script.js?v=20260409h"></script>
+</body>
+</html>
